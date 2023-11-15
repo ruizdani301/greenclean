@@ -1,0 +1,8 @@
+.container-graph {
+  display: flex;
+  min-height: 60vh;
+}
+#graph-container {
+  justify-content: center;
+  display: flex;
+}

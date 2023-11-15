@@ -1,0 +1,9 @@
+.container-List {
+  display: flex;
+  justify-content: center;
+  overflow-y: scroll;
+}
+.scrollable-div {
+  max-height: 200px; /* Puedes ajustar la altura máxima según tus necesidades */
+  overflow-y: auto;
+}

@@ -1,0 +1,11 @@
+.container-title {
+  display: flex;
+  color: rgb(74, 114, 70);
+  font-size: 36px;
+  font-weight: 800;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40px;
+  margin-top: 20px;
+}

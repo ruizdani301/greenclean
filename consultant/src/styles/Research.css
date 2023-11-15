@@ -1,0 +1,23 @@
+.container-research {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(198, 214, 198);
+  width: 30vw;
+  height: 100%;
+  position: relative;
+}
+
+.input {
+  height: 30px;
+}
+
+.dates {
+  margin: 5px;
+}
+.list-save-buttons {
+  display: flex;
+
+  margin: 10px;
+}

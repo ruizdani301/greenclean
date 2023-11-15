@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      - DATABASE_HOST=localhost
+      - POSTGRES_USER=daniel
+      - POSTGRES_PASSWORD=Daniel123*4.
+      - POSTGRES_DB=consultant
+
+  Dbeaver:
+    image: dbeaver/cloudbeaver:23.2.1
+    ports:
+      - 8080:8080
+    depends_on:
+      - postgres
