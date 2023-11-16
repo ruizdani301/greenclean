@@ -6,11 +6,10 @@ import { Spinner } from "reactstrap";
 function Graph(props) {
   useEffect(() => {
     const svgContainer = d3.select("#graph-container");
-    svgContainer.selectAll("*").remove(); // Limpia
+    svgContainer.selectAll("*").remove();
     const svgList = d3.select("#list-container");
-    svgList.selectAll("*").remove(); // Limpia
+    svgList.selectAll("*").remove();
 
-    // Datos para la gráfica
     const data = props.jsonData;
     //[
     //   { load_type: "RECYCLING - SINGLE STREAM", total: 1452741062.0 },
@@ -23,38 +22,38 @@ function Graph(props) {
     //   { load_type: "RECYCLED METAL", total: 741868.0 },
     // ];
 
-    // Dimensiones del lienzo SVG
+    // SVG Canvas Dimensions
     const width = 800; // Ancho del lienzo ajustado
     const height = 400;
     const radius = Math.min(width, height) / 2;
 
-    // Crear el contenedor principal
+    // Create the main container
     const container = d3
       .select("#graph-container")
       .append("div")
       .attr("class", "container");
 
-    // Crear el contenedor SVG para la gráfica
+    // Create the SVG container for the graph
     const svg = container
       .append("svg")
-      .attr("width", width / 2) // Solo la mitad del ancho para la gráfica
+      .attr("width", width / 2)
       .attr("height", height)
       .append("g")
       .attr("transform", "translate(" + width / 4 + "," + height / 2 + ")");
 
-    // Crear el generador de arco
+    // Create the arc generator
     const arc = d3
       .arc()
       .outerRadius(radius - 10)
       .innerRadius(0);
 
-    // Crear la función de escala de colores
+    // Create the color scale function
     const colorScale = d3.scaleOrdinal(d3.schemeCategory10);
 
-    // Crear la función de generación de datos de pie
+    // Create the foot data generation function
     const pie = d3.pie().value((d) => d.total);
 
-    // Seleccionar los elementos de arco y enlazar los datos
+    // Select arc elements and bind data
     const arcs = svg
       .selectAll("path")
       .data(pie(data))
@@ -65,13 +64,13 @@ function Graph(props) {
       .attr("stroke", "white")
       .style("stroke-width", "2px");
 
-    // Añadir etiquetas con porcentajes
+    // Add labels with percentages
     svg
       .selectAll("text")
       .data(pie(data))
       .enter()
       .append("text")
-      .filter((d) => ((d.endAngle - d.startAngle) / (2 * Math.PI)) * 100 > 5) // Filtrar porcentajes mayores al 5%
+      .filter((d) => ((d.endAngle - d.startAngle) / (2 * Math.PI)) * 100 > 4)
       .attr("transform", (d) => "translate(" + arc.centroid(d) + ")")
       .attr("dy", "0.35em")
       .attr("text-anchor", "middle")
@@ -80,17 +79,17 @@ function Graph(props) {
           `${Math.round(((d.endAngle - d.startAngle) / (2 * Math.PI)) * 100)}%`
       );
 
-    // Crear el contenedor para la lista al lado derecho
+    // Create the container for the list on the right side
     const listContainer = container
       .append("div")
-      .attr("class", "list-container") // Puedes ajustar la clase según tus estilos
-      .style("float", "right") // Ubica el contenedor a la derecha
-      .style("margin-left", "20px"); // Ajusta el margen izquierdo para separarlo del gráfico
+      .attr("class", "list-container")
+      .style("float", "right")
+      .style("margin-left", "20px");
 
-    // Ordenar la lista por porcentaje en orden descendente
+    // Sort the list by percentage in descending order
     const sortedData = data.slice().sort((a, b) => b.total - a.total);
 
-    // Crear lista con detalles
+    //Details list
     const detailsList = listContainer
       .append("ul")
       .style("list-style", "none")
@@ -104,7 +103,7 @@ function Graph(props) {
             data.indexOf(d)
           )}; font-size: 24px;">&#8226;</span> ${
             d.load_type
-          } - ${d.total.toFixed(1)} (${(
+          } - ${d.total.toFixed(1)}Kg (${(
             (d.total / data.reduce((acc, curr) => acc + curr.total, 0)) *
             100
           ).toFixed(1)}%)`
@@ -130,22 +129,3 @@ function Graph(props) {
 }
 
 export default Graph;
-//   return (
-//     <div id="graph-container">
-//       <h1>Gráfica de Pie</h1>
-//       <div id="list-container"></div>
-//       <div id="list-container"></div>
-//       {/* <ul>
-//         <div>
-//           {props.jsonData.map((item) => (
-//             <li key={item.id}>{item.title}</li>
-//           ))}
-//         </div>
-//         ;
-//       </ul>
-//       ; */}
-//     </div>
-//   );
-// }
-
-// export default Graph;

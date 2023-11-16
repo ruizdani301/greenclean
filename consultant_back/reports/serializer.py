@@ -31,7 +31,6 @@ class BigQuerySerializer(serializers.Serializer):
         }
         
 
-
 """ 
     The above class is a serializer in Python for a
     BigQueryNotAvg model, which includes fields for
@@ -83,42 +82,17 @@ class QueryAllSerializer(serializers.ModelSerializer):
                              'description': instance.commentid.description}
             }
  
-# class SaveQuerySerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Query
-#         fields = ['query_name', 'material', 'start_date', 'end_date', 'commentid']
-    
-#     def to_representation(self, instance):
-#         return {
-#             'query_name': instance.query_name,
-#             'material': instance.material,
-#             'start_date': instance.start_date,
-#             'end_date': instance.end_date,
-#             'commentid_id': {'user': instance.commentid.user,
-#                              'description': instance.commentid.description}
-#             }
+
 class SaveCommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
-        fields = ('user', 'description',)
+        fields = ('user', 'description')
 
 class SaveQuerySerializer(serializers.ModelSerializer):
-    comment_id = SaveCommentSerializer(many=True)
-
     class Meta:
         model = Query
-        fields = '__all__'
-    
-    # ('query_name', 'material', 'start_date', 'end_date', 'comment_id')    
-    
-    # def to_representation(self, instance):
-    #     return {
-    #         'query_name': instance.query_name,
-    #         'material': instance.material,
-    #         'start_date': instance.start_date,
-    #         'end_date': instance.end_date,
-    #         'comment_id': [{
-    #             'user': instance.commentid.user if instance.commentid else None,
-    #             'description': instance.commentid.description if instance.commentid else None
-    #         }]
-    #     }
+        fields = ('query_name', 'material', 'start_date', 'end_date')
+
+
+
+

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
 import "../styles/Research.css";
 import { runQuery } from "../utils/runQuery.js";
-
 import Save from "./Save";
 
 //import { listQuery } from "../utils/listQuery.js";
@@ -13,11 +12,9 @@ function Research(props) {
   const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState();
   const [inputCheck, setinputCheck] = useState(false);
-
   const [user, setUser] = useState();
   const [comments, setComments] = useState();
   const [title, setTitle] = useState();
-  // const [comment, setDescription] = useState();
 
   const hadleSubmit = (e) => {
     e.preventDefault();
@@ -36,6 +33,7 @@ function Research(props) {
         props.setLoading(false);
       });
   };
+  console.log("linea 39 reserach", inputMaterial);
   useEffect(() => {
     if (props.responseOneQuery.material) {
       setinputMaterial(props.responseOneQuery.material);
@@ -61,8 +59,6 @@ function Research(props) {
     props.responseOneQuery.start_date,
     props.responseOneQuery.end_date,
     props.responseOneQuery,
-    // props.responseOneQuery.commentid_id.description,
-    // props.responseOneQuery.query_name,
   ]);
 
   return (

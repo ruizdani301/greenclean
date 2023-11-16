@@ -13,7 +13,7 @@ function Save(props) {
     e.preventDefault();
 
     const querySave = saveQuery(
-      props.inputMaterial,
+      props.material,
       props.startDate,
       props.endDate,
       props.user,
@@ -42,7 +42,7 @@ function Save(props) {
             placeholder="User"
             type="text"
             value={props?.user}
-            onChange={(e) => props.setUser(e.target.value)}
+            onChange={(e) => props?.setUser(e.target.value)}
           />
         </FormGroup>
         <FormGroup>

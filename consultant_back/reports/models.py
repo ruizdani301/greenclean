@@ -33,8 +33,3 @@ class Query(models.Model):
     
     def __str__(self):
         return f"{self.query_name}--{self.material}"
-    
-
-# class ListComment(models.Model):
-#     main = models.ForeignKey(Comment, related_name='main', on_delete=models.CASCADE, blank=True, null=True)
-#     text_comment = models.ForeignKey(Comment, related_name='text_comment', on_delete=models.CASCADE, blank=True, null=True)
