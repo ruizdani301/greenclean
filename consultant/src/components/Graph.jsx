@@ -11,16 +11,6 @@ function Graph(props) {
     svgList.selectAll("*").remove();
 
     const data = props.jsonData;
-    //[
-    //   { load_type: "RECYCLING - SINGLE STREAM", total: 1452741062.0 },
-    //   { load_type: "RECYCLING - PAPER", total: 25277320.0 },
-    //   { load_type: "RECYCLING - COMINGLE", total: 22683850.0 },
-    //   { load_type: "SWEEPING", total: 144137354.0 },
-    //   { load_type: "BRUSH", total: 195333878.0 },
-    //   { load_type: "TIRES", total: 5512514.0 },
-    //   { load_type: "BULK", total: 251790513.0 },
-    //   { load_type: "RECYCLED METAL", total: 741868.0 },
-    // ];
 
     // SVG Canvas Dimensions
     const width = 800; // Ancho del lienzo ajustado
@@ -118,7 +108,7 @@ function Graph(props) {
     );
   }
   if (isListEmpty) {
-    return <div>No data in this range</div>;
+    return <div>No data in this range....</div>;
   }
   return (
     <div>

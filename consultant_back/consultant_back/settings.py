@@ -32,7 +32,10 @@ SECRET_KEY = env('SECRET_KEY')
 DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = ['*']
-CORS_ORIGIN_ALLOW_ALL = True
+#CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+]
 
 # Application definition
 
@@ -106,6 +109,10 @@ DATABASES = {
    'PORT': env('POSTGRES_PORT'),
     }
 }
+print("#########linea 109 en setting###########")
+print( env('POSTGRES_PORT'))
+print( env('POSTGRES_PASSWORD'))
+print( env('POSTGRES_HOST'))
 DATE_INPUT_FORMATS = [
     '%d-%m-%Y',  
 ]

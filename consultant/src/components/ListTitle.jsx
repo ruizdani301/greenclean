@@ -2,6 +2,13 @@ import React from "react";
 import "../styles/Title.css";
 import { Button } from "reactstrap";
 import { listQueries } from "../utils/listQueries";
+
+/**
+ * Handles the submit event of the form to list queries.
+ *
+ * @param {object} props - The props object.
+ * @return {void}
+ */
 function ListTitle(props) {
   const hadleSubmit = (e) => {
     e.preventDefault();

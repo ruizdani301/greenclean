@@ -70,5 +70,4 @@ class QueryViewSet(ViewSet):
     def retrieve(self, request, pk=None):
         queryset = Query.objects.get(pk=pk)
         serializer = QueryAllSerializer(queryset)
-        print(serializer.data)
         return Response(serializer.data)

@@ -3,22 +3,33 @@ import "react-datepicker/dist/react-datepicker.css";
 import "../styles/Research.css";
 import { runQuery } from "../utils/runQuery.js";
 import Save from "./Save";
-
-//import { listQuery } from "../utils/listQuery.js";
 import { FormGroup, Input, Label, Form, Button } from "reactstrap";
+
+/**
+ * Handles the submit event for the form.
+ *
+ * @param {Event} e - The submit event object.
+ * @return {void} This function does not return anything.
+ */
 
 function Research(props) {
   const [inputMaterial, setinputMaterial] = useState("ALL");
   const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState();
-  const [inputCheck, setinputCheck] = useState(false);
+  //const [inputCheck, setinputCheck] = useState(false);
   const [user, setUser] = useState();
   const [comments, setComments] = useState();
   const [title, setTitle] = useState();
 
+  /**
+   * Handles the submit event for the form.
+   *
+   * @param {Event} e - The submit event object.
+   * @return {void} This function does not return anything.
+   */
   const hadleSubmit = (e) => {
     e.preventDefault();
-    const run = runQuery(inputMaterial, startDate, endDate, inputCheck);
+    const run = runQuery(inputMaterial, startDate, endDate);
     //   handleSubmit(e);
     props.setLoading(true);
     run
@@ -119,13 +130,6 @@ function Research(props) {
           />
         </FormGroup>
 
-        <FormGroup check>
-          <Input
-            type="checkbox"
-            onChange={(e) => setinputCheck(e.target.checked)}
-          />
-          <Label check>with average weight</Label>
-        </FormGroup>
         <div className="d-flex justify-content-center align-items-center">
           <Button color="success">Run Query</Button>
         </div>
