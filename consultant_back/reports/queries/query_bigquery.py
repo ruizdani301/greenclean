@@ -1,7 +1,6 @@
 import os
 from google.cloud import bigquery
 from reports.connection_biquery.connection import connection_bigquery
-from rest_framework.response import Response
 def query_bigquery(material,startDate,endDate):
     
     if material != "ALL":
