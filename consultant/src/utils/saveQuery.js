@@ -6,8 +6,6 @@ export function saveQuery(
   comments,
   title
 ) {
-  alert("save consulta");
-
   const data = {
     query_name: title,
     material: inputMaterial,
@@ -17,8 +15,6 @@ export function saveQuery(
     description: comments,
   };
 
-  console.log("datos data");
-  console.log("datos data", data);
   const apiUrl = "http://127.0.0.1:8000/api/v1/query/localquery/";
 
   return fetch(apiUrl, {

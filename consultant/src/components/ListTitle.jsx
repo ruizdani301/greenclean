@@ -6,15 +6,13 @@ import { listQueries } from "../utils/listQueries";
 /**
  * Handles the submit event of the form to list queries.
  *
- * @param {object} props - The props object.
+ * @param {object} props
  * @return {void}
  */
 function ListTitle(props) {
   const hadleSubmit = (e) => {
     e.preventDefault();
     const listOfQueries = listQueries();
-    //   handleSubmit(e);
-    //props.setLoading(true);
     listOfQueries
       .then((response) => response.json())
       .then((data) => {

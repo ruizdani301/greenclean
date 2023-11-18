@@ -1,20 +1,62 @@
-version: "3.8"
+version: "3.9"
 
 services:
-  postgres:
-    image: postgres
-    restart: always
+  #Django Container
+  web:
+    build:
+      context: ./consultant_back
+      dockerfile: ./Dockerfile
+    container_name: django_app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres_db
+    env_file:
+      - .env
+    environment:
+      - SECRET_KEY=${SECRET_KEY}
+      - DEBUG=True
+      - POSTGRES_DB=consultant_db
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_HOST=postgres_db
+      - POSTGRES_PORT=5432
+    command: "python manage.py runserver 0.0.0.0:8000 && python manage.py makemigrations && python manage.py migrate"
+    # volumes:
+    #   - greenclean/consultant_back:/app
+
+  # PostgreSQL
+  postgres_db:
+    image: postgres:16.1-alpine3.18
+    container_name: postgres_db
+    expose:
+      - "5432"
     ports:
       - "5432:5432"
+    env_file:
+      - .env
     environment:
-      - DATABASE_HOST=localhost
-      - POSTGRES_USER=daniel
-      - POSTGRES_PASSWORD=Daniel123*4.
-      - POSTGRES_DB=consultant
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+    #- ./init.sql:/docker-entrypoint-initdb.d/init.sql
 
-  Dbeaver:
-    image: dbeaver/cloudbeaver:23.2.1
+  #Contenedor de la aplicación React
+  frontend:
+    build:
+      context: ./consultant
+      dockerfile: ./Dockerfile
+    image: imagen_react
+    container_name: react_app
     ports:
-      - 8080:8080
+      - "9000:3000"
     depends_on:
-      - postgres
+      - web
+    #command: npm start
+    # volumes:
+    #   - ./ruta_local_react:/ruta_contenedor_react
+
+volumes:
+  postgres_data: {}

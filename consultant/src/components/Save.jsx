@@ -41,6 +41,7 @@ function Save(props) {
             name="user"
             placeholder="User"
             type="text"
+            required
             value={props?.user}
             onChange={(e) => props?.setUser(e.target.value)}
           />
@@ -52,6 +53,7 @@ function Save(props) {
             name="comment"
             placeholder="Title"
             type="text"
+            required
             value={props?.title}
             onChange={(e) => props.setTitle(e.target.value)}
           />
@@ -63,6 +65,7 @@ function Save(props) {
             name="comment"
             placeholder="Write your comments"
             type="text"
+            required
             value={props?.comments}
             onChange={(e) => props.setComments(e.target.value)}
           />

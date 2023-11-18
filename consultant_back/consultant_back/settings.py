@@ -31,10 +31,11 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = ['*']
+#ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 #CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
+    "http://localhost:9000",
 ]
 
 # Application definition
@@ -68,6 +69,7 @@ MIDDLEWARE = [
     "django.middleware.common.CommonMiddleware",
 ]
 
+# ROOT_URLCONF = "consultant_back.urls"
 ROOT_URLCONF = "consultant_back.urls"
 
 TEMPLATES = [
@@ -92,12 +94,6 @@ WSGI_APPLICATION = "consultant_back.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.sqlite3",
-#         "NAME": BASE_DIR / "db.sqlite3",
-#     }
-# }
 
 DATABASES = {
     'default': {
@@ -109,10 +105,7 @@ DATABASES = {
    'PORT': env('POSTGRES_PORT'),
     }
 }
-print("#########linea 109 en setting###########")
-print( env('POSTGRES_PORT'))
-print( env('POSTGRES_PASSWORD'))
-print( env('POSTGRES_HOST'))
+
 DATE_INPUT_FORMATS = [
     '%d-%m-%Y',  
 ]

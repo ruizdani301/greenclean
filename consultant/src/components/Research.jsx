@@ -44,7 +44,6 @@ function Research(props) {
         props.setLoading(false);
       });
   };
-  console.log("linea 39 reserach", inputMaterial);
   useEffect(() => {
     if (props.responseOneQuery.material) {
       setinputMaterial(props.responseOneQuery.material);

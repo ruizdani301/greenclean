@@ -1,5 +1,5 @@
 # Usa una imagen base con Node.js
-FROM node:17.9.1-alpine
+FROM node:17-alpine
 
 # Establece el directorio de trabajo en /app
 WORKDIR /app
@@ -15,3 +15,12 @@ EXPOSE 3000
 
 # Comando para iniciar la aplicación cuando el contenedor se inicia
 CMD ["npm", "start"]
+
+# FROM node:17-alpine
+# WORKDIR /app
+# COPY package.json .
+# COPY package-lock.json .
+# RUN npm install
+# COPY . .
+# RUN npm run build
+# CMD ["npm", "start"]

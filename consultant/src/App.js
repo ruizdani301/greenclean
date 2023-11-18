@@ -17,7 +17,6 @@ function App() {
   const fillData = (data) => setJsonData(data);
   const listResponse = (data) => setResponseList(data);
   const OneQueryResponse = (data) => setResponseOneQuery(data);
-  console.log(responseOneQuery);
   return (
     <div className="App">
       <Header />

@@ -1,26 +1,20 @@
-# indica al contenedor desde que imagen empezar
-FROM python:3.10.13-alpine3.17
+FROM python:3.12.0-alpine3.17
+#FROM python:3.4
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
+
+# RUN apt-get update \
+# 	&& apt-get install -y --no-install-recommends \
+# 		postgresql-client \
+# 	&& rm -rf /var/lib/apt/lists/*
+
+# RUN pip install --no-cache-dir -r requirements.txt
+
+
 WORKDIR /app
-
-RUN apk update \
-    && python3 -m pip install --upgrade pip \ 
-    && apk add --virtual build-deps gcc python3-dev musl-dev \
-    && apk add --no-cache mariadb-dev
-   
-#COPY ./requirements.txt ./
-COPY ./requirements.txt ./
-
+COPY requirements.txt ./
 RUN pip install -r requirements.txt
+COPY . .
 
-copy ./ ./
-
-EXPOSE 8000
-# comando que se ejecutara al iniciar el contenedor
-
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
-
-# docker build -t appointment .
-# -t : el nombre que se le sa al contenedor
-# . : que busque Dockerfile en el directorio actual
+#EXPOSE 8000
+#CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
