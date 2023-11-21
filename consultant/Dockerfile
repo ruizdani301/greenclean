@@ -1,26 +1,8 @@
-# Usa una imagen base con Node.js
 FROM node:17-alpine
 
-# Establece el directorio de trabajo en /app
 WORKDIR /app
-
-# Copia los archivos de tu aplicación al contenedor
 COPY . .
-
-# Instala las dependencias
 RUN npm install
-
-# Expone el puerto en el que la aplicación de React se ejecutará
 EXPOSE 3000
-
-# Comando para iniciar la aplicación cuando el contenedor se inicia
 CMD ["npm", "start"]
 
-# FROM node:17-alpine
-# WORKDIR /app
-# COPY package.json .
-# COPY package-lock.json .
-# RUN npm install
-# COPY . .
-# RUN npm run build
-# CMD ["npm", "start"]

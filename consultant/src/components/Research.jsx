@@ -124,6 +124,7 @@ function Research(props) {
             name="enddate"
             placeholder="date placeholder"
             type="date"
+            required
             value={endDate}
             onChange={(e) => setEndDate(e.target.value)}
           />

@@ -1,5 +1,7 @@
 ![presentation](./img_userguide/presentation_logo.png)
 
+link to Docker and infrastructure explanation https://youtu.be/NObzXgxh5t8
+
 # greenClean consulting
 
 greenClean, is a consulting company in charge of measuring the waste collected in the city of Austin, Texas, with the objective of obtaining relevant information for making decisions that improve the quality of life of the environment.

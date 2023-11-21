@@ -3,16 +3,14 @@ version: "3.9"
 services:
   #Django Container
   web:
-    build:
-      context: ./consultant_back
-      dockerfile: ./Dockerfile
+    image: ruizdani301/ver_fellow:greenclean
     container_name: django_app
     ports:
       - "8000:8000"
     depends_on:
       - postgres_db
-    env_file:
-      - .env
+    # env_file:
+    #   - .env
     environment:
       - SECRET_KEY=${SECRET_KEY}
       - DEBUG=True
@@ -22,8 +20,6 @@ services:
       - POSTGRES_HOST=postgres_db
       - POSTGRES_PORT=5432
     command: "python manage.py runserver 0.0.0.0:8000 && python manage.py makemigrations && python manage.py migrate"
-    # volumes:
-    #   - greenclean/consultant_back:/app
 
   # PostgreSQL
   postgres_db:
@@ -41,22 +37,19 @@ services:
       - POSTGRES_DB=${POSTGRES_DB}
     volumes:
       - ./postgres_data:/var/lib/postgresql/data
-    #- ./init.sql:/docker-entrypoint-initdb.d/init.sql
 
   #Contenedor de la aplicación React
   frontend:
-    build:
-      context: ./consultant
-      dockerfile: ./Dockerfile
-    image: imagen_react
+    # build:
+    #   context: ./consultant
+    #   dockerfile: ./Dockerfile
+
+    image: ruizdani301/ver_fellow:imagen_react
     container_name: react_app
     ports:
       - "9000:3000"
     depends_on:
       - web
-    #command: npm start
-    # volumes:
-    #   - ./ruta_local_react:/ruta_contenedor_react
 
 volumes:
   postgres_data: {}

@@ -1,6 +1,7 @@
 import os
 from google.cloud import bigquery
 
+
 def connection_bigquery(sqlQuery,job_config):
     
     """ 
@@ -37,8 +38,7 @@ def connection_bigquery(sqlQuery,job_config):
             dict_list_rows["load_type"] = row['load_type']
             dict_list_rows["total"] = row['total']
             list_of_rows.append(dict_list_rows)
-      
-        return list_of_rows # list_of_rows
+
+        return list_of_rows
     else:
         return ("no Data")
-          

@@ -1,9 +1,9 @@
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from reports.queries.query_bigquery import query_bigquery
-from datetime import datetime
 from reports.serializer import (BigQueryNotAvgSerializer)
 from rest_framework import status
+from datetime import datetime
 
 
 class BigQueryViewSet(ViewSet):
@@ -25,8 +25,8 @@ class BigQueryViewSet(ViewSet):
         material = request.query_params.get('material')
         startDate = request.query_params.get('startDate')
         endDate = request.query_params.get('endDate')
+        
         if endDate == "null":
-            print("la fecha no biene")
             endDate = str(datetime.now().date())
         
         object_query = query_bigquery(material, startDate, endDate)

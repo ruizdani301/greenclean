@@ -2,13 +2,11 @@ import os
 from rest_framework.viewsets import ViewSet
 from django.db.models import Max
 from rest_framework.response import Response
-from django.http import JsonResponse
 from reports.serializer import (QuerySerializer,
                                 QueryAllSerializer,SaveQuerySerializer,
                                 SaveCommentSerializer)
 from reports.models import Query, Comment
 from rest_framework import status
-from django.shortcuts import get_object_or_404
 
 
 class QueryViewSet(ViewSet):
@@ -68,6 +66,9 @@ class QueryViewSet(ViewSet):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def retrieve(self, request, pk=None):
-        queryset = Query.objects.get(pk=pk)
-        serializer = QueryAllSerializer(queryset)
-        return Response(serializer.data)
+        try:
+            queryset = Query.objects.get(pk=pk)
+            serializer = QueryAllSerializer(queryset)
+            return Response(serializer.data)
+        except:
+            return Response({"mesage":"No exist"})

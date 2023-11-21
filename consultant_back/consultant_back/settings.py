@@ -19,23 +19,26 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 env = environ.Env()
-environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+
+environ.Env.read_env(os.path.join(BASE_DIR, '.env' ))
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DEBUG')
+# DEBUG = env('DEBUG')
+DEBUG = os.environ.get('DEBUG')
 
 #ALLOWED_HOSTS = ['*']
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 #CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:9000",
+    "http://localhost:3000"
 ]
 
 # Application definition
@@ -51,11 +54,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "reports",
 ]
-# CORS_ORIGIN_WHITELIST = (
-    
-#     'localhost:8000',
-#     '127.0.0.1:8000'
-# )
+
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -94,15 +93,14 @@ WSGI_APPLICATION = "consultant_back.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-
 DATABASES = {
     'default': {
    'ENGINE': 'django.db.backends.postgresql_psycopg2',
-   'NAME': env('POSTGRES_DB'),
-   'USER': env('POSTGRES_USER'),
-   'PASSWORD': env('POSTGRES_PASSWORD'),
-   'HOST': env('POSTGRES_HOST'),
-   'PORT': env('POSTGRES_PORT'),
+   'NAME': os.environ.get('POSTGRES_DB'),
+   'USER': os.environ.get('POSTGRES_USER'),
+   'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
+   'HOST': os.environ.get('POSTGRES_HOST'),
+   'PORT': os.environ.get('POSTGRES_PORT'),
     }
 }
 

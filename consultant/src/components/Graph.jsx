@@ -44,7 +44,8 @@ function Graph(props) {
     const pie = d3.pie().value((d) => d.total);
 
     // Select arc elements and bind data
-    const arcs = svg
+    //const arcs = svg;
+    svg
       .selectAll("path")
       .data(pie(data))
       .enter()
@@ -80,7 +81,8 @@ function Graph(props) {
     const sortedData = data.slice().sort((a, b) => b.total - a.total);
 
     //Details list
-    const detailsList = listContainer
+    //const detailsList = listContainer;
+    listContainer
       .append("ul")
       .style("list-style", "none")
       .selectAll("li")

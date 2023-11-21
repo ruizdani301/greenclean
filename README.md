@@ -1,6 +1,6 @@
 # greenClean
 
-greenClean is in an application which graphically displays the requested results through a graphical interface using selection fields, the data is extracted from the bigquery database.
+greenClean is an application that graphically displays the requested results through a graphical interface using selection fields, the data is extracted from the bigquery database and also from the local database where the necessary information is persisted.
 
 ![architecture](./img_userguide/readme_presentation.png)
 
